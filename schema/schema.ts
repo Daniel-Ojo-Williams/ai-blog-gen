@@ -12,3 +12,12 @@ export const signupSchema = z.object({
 }).strict();
 
 export const loginSchema = signupSchema.omit({ first_name: true, last_name: true });
+
+export const updateArticle = z.object({
+  content: z.string().optional(),
+  title: z.string().optional(),
+}).refine(data => Object.keys(data).some(key => key !== undefined), { message: "One of content or title is requierd", path: ['update'] });
+
+export const generateArticle = z.object({
+  link: z.string()
+});

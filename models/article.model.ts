@@ -34,6 +34,16 @@ class Article {
 
     return articles
   };
+
+  async updateArticle(articleId: string, details: { content?: string, title?: string }) {
+    const article = await this.db('articles').where({ id: articleId }).update({ ...details });
+    return article;
+  }
+
+  async deleteArticle(articleId: string) {
+    const article = await this.db('articles').where({ id: articleId }).del();
+    return article;
+  }
 }
 
 export default Article;
