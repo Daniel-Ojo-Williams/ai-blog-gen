@@ -3,14 +3,14 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import userRoute from "@routes/user.route";
-import protecRoute from "@routes/protect.route";
+import articleRoute from "@routes/article.route";
 
 
 const app = express();
 app.use(express.json())
 
 app.use(userRoute);
-app.use(protecRoute);
+app.use(articleRoute);
 
 const PORT = process.env.PORT ?? 3080
 

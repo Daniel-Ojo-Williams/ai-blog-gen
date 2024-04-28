@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { decodeToken } from "../utils/tokenGenerate";
 import { apiHttpStatusCodes } from "../utils/apiHttpStatusCodes";
-import { IUser } from "@models/users.model";
 
 const ensureAuthenticated = (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -12,7 +11,7 @@ const ensureAuthenticated = (req: Request, res: Response, next: NextFunction) =>
     // --| Decode bearer token
     const user = decodeToken(token);
     // --| Add decoded user to
-    res.locals.user = user as Partial<IUser>;    
+    res.locals.user = user;    
     next();
   } catch (e: any) {
     return res.status(apiHttpStatusCodes.STATUS_FORBIDDEN).json({ error: true, message: "Unauthorized user" });
